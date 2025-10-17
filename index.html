@@ -13,9 +13,11 @@
         .progress-bar { width: 100%; height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin-bottom: 30px; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: 0%; transition: width 0.5s ease; }
         .level-info { text-align: center; margin-bottom: 20px; font-size: 18px; color: #333; }
-        .game-area { min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .game-area { min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .start-screen { width: 100%; text-align: center; }
         .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 40px; font-size: 18px; border-radius: 30px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; margin: 10px; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3); }
+        .btn:active { transform: translateY(0); }
         .reaction-circle { width: 150px; height: 150px; border-radius: 50%; background: #ff6b6b; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; cursor: pointer; transition: all 0.3s; margin: 20px; }
         .reaction-circle.active { background: #51cf66; transform: scale(1.1); }
         .pattern-grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; margin: 20px auto; }
@@ -29,12 +31,12 @@
         .breathing-circle { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; transition: all 4s ease-in-out; }
         .breathing-circle.inhale { transform: scale(1.5); }
         .breathing-circle.exhale { transform: scale(1); }
-        .multitask-area { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+        .multitask-area { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 600px; }
         .task-input { padding: 15px; font-size: 18px; border: 2px solid #667eea; border-radius: 10px; text-align: center; width: 100%; }
         .balance-container { position: relative; width: 300px; height: 300px; margin: 20px auto; border: 2px solid #dee2e6; border-radius: 10px; }
         .balance-ball { width: 40px; height: 40px; border-radius: 50%; background: #667eea; position: absolute; top: 130px; left: 130px; }
         .balance-target { width: 60px; height: 60px; border: 3px dashed #51cf66; border-radius: 50%; position: absolute; top: 120px; left: 120px; }
-        .task-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+        .task-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; width: 100%; max-width: 600px; }
         .task-item { padding: 15px; background: #f8f9fa; border-radius: 10px; cursor: move; border-left: 4px solid #667eea; transition: transform 0.2s; }
         .task-item:hover { transform: translateX(5px); }
         .task-item.dragging { opacity: 0.5; }
@@ -44,18 +46,19 @@
         .focus-cell.target { background: #51cf66; }
         .emotion-face { font-size: 120px; margin: 30px; }
         .emotion-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .decision-scenario { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: left; }
-        .decision-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .decision-scenario { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: left; max-width: 600px; }
+        .decision-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; max-width: 600px; }
         .decision-option { padding: 15px; background: white; border: 2px solid #dee2e6; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-align: left; }
         .decision-option:hover { border-color: #667eea; transform: translateX(5px); }
-        .result-card { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: left; }
+        .result-card { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: left; max-width: 700px; }
         .result-score { font-size: 48px; font-weight: bold; color: #667eea; margin: 20px 0; text-align: center; }
-        .metric { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 10px; background: white; border-radius: 5px; }
+        .metric { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 10px; background: white; border-radius: 5px; font-size: 14px; }
         .metric-bar { width: 50%; height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden; margin: 0 10px; }
         .metric-fill { height: 100%; transition: width 1s ease; }
-        .recommendation { background: #fff3cd; padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #ffc107; }
+        .recommendation { background: #fff3cd; padding: 15px; border-radius: 10px; margin: 10px 0; border-left: 4px solid #ffc107; line-height: 1.6; }
         .timer { font-size: 24px; font-weight: bold; color: #667eea; margin: 10px 0; }
-        .instruction { background: #e7f5ff; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #339af0; }
+        .instruction { background: #e7f5ff; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #339af0; max-width: 600px; }
+        .result-screen { width: 100%; max-width: 800px; }
     </style>
 </head>
 <body>
@@ -80,10 +83,10 @@
             }
             init() { this.showStartScreen(); }
             showStartScreen() {
-                this.gameArea.innerHTML = `<div class="start-screen"><h2>Добро пожаловать!</h2><p style="margin: 20px 0; line-height: 1.6;">Эта игра поможет оценить ваше психологическое состояние через серию интерактивных заданий.<br><br>Вы пройдете 10 уровней, каждый из которых исследует различные аспекты вашего состояния.<br><br>Играйте естественно и не думайте о "правильных" ответах.</p><button class="btn" onclick="game.startGame()">Начать игру</button></div>`;
+                this.gameArea.innerHTML = '<div class="start-screen"><h2>Добро пожаловать!</h2><p style="margin: 20px 0; line-height: 1.6;">Эта игра поможет оценить ваше психологическое состояние через серию интерактивных заданий.<br><br>Вы пройдете 10 уровней, каждый из которых исследует различные аспекты вашего состояния.<br><br>Играйте естественно и не думайте о "правильных" ответах.</p><button class="btn" onclick="game.startGame()">Начать игру</button></div>';
             }
             startGame() { this.currentLevel = 1; this.loadLevel(1); }
-            updateProgress() { this.progressFill.style.width = ((this.currentLevel / this.totalLevels) * 100) + '%'; this.levelInfo.textContent = `Уровень ${this.currentLevel} из ${this.totalLevels}`; }
+            updateProgress() { this.progressFill.style.width = ((this.currentLevel / this.totalLevels) * 100) + '%'; this.levelInfo.textContent = 'Уровень ' + this.currentLevel + ' из ' + this.totalLevels; }
             loadLevel(level) { this.updateProgress(); switch(level) { case 1: this.level1_ReactionTime(); break; case 2: this.level2_PatternMemory(); break; case 3: this.level3_ColorStroop(); break; case 4: this.level4_Breathing(); break; case 5: this.level5_Multitasking(); break; case 6: this.level6_Balance(); break; case 7: this.level7_Priority(); break; case 8: this.level8_Focus(); break; case 9: this.level9_EmotionRecognition(); break; case 10: this.level10_DecisionMaking(); break; } }
             level1_ReactionTime() {
                 let attempts = 0, reactionTimes = [], maxAttempts = 5;
@@ -95,7 +98,7 @@
                         this.nextLevel();
                         return;
                     }
-                    this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 1: Скорость реакции</strong><br>Нажмите на круг, когда он станет зеленым</div><div class="timer">Попытка ${attempts + 1} из ${maxAttempts}</div><div class="reaction-circle" id="reactionCircle">Ждите...</div>`;
+                    this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 1: Скорость реакции</strong><br>Нажмите на круг, когда он станет зеленым</div><div class="timer">Попытка ' + (attempts + 1) + ' из ' + maxAttempts + '</div><div class="reaction-circle" id="reactionCircle">Ждите...</div>';
                     const circle = document.getElementById('reactionCircle');
                     let startTime;
                     setTimeout(() => {
@@ -106,7 +109,7 @@
                             const reactionTime = Date.now() - startTime;
                             reactionTimes.push(reactionTime);
                             attempts++;
-                            circle.textContent = `${reactionTime} мс`;
+                            circle.textContent = reactionTime + ' мс';
                             setTimeout(() => startAttempt(), 1000);
                         };
                     }, 2000 + Math.random() * 3000);
@@ -117,7 +120,7 @@
                 const pattern = [], patternLength = 5;
                 let playerPattern = [], showingPattern = true;
                 for (let i = 0; i < patternLength; i++) pattern.push(Math.floor(Math.random() * 9));
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 2: Память на последовательность</strong><br>Запомните и повторите последовательность</div><div class="timer" id="patternTimer">Смотрите внимательно...</div><div class="pattern-grid" id="patternGrid"></div>`;
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 2: Память на последовательность</strong><br>Запомните и повторите последовательность</div><div class="timer" id="patternTimer">Смотрите внимательно...</div><div class="pattern-grid" id="patternGrid"></div>';
                 const grid = document.getElementById('patternGrid'), timer = document.getElementById('patternTimer');
                 for (let i = 0; i < 9; i++) { const cell = document.createElement('div'); cell.className = 'pattern-cell'; cell.dataset.index = i; grid.appendChild(cell); }
                 let step = 0;
@@ -162,7 +165,7 @@
                         return;
                     }
                     const wordColor = colors[Math.floor(Math.random() * colors.length)], displayColor = colors[Math.floor(Math.random() * colors.length)], startTime = Date.now();
-                    this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 3: Тест Струпа</strong><br>Выберите ЦВЕТ текста, а не то, что написано</div><div class="timer">Раунд ${round + 1} из ${maxRounds}</div><div class="stroop-word" style="color: ${colorCodes[displayColor]}">${wordColor}</div><div class="color-buttons" id="colorButtons"></div>`;
+                    this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 3: Тест Струпа</strong><br>Выберите ЦВЕТ текста, а не то, что написано</div><div class="timer">Раунд ' + (round + 1) + ' из ' + maxRounds + '</div><div class="stroop-word" style="color: ' + colorCodes[displayColor] + '">' + wordColor + '</div><div class="color-buttons" id="colorButtons"></div>';
                     const buttonsContainer = document.getElementById('colorButtons');
                     colors.forEach(color => {
                         const btn = document.createElement('button');
@@ -182,7 +185,7 @@
             }
             level4_Breathing() {
                 let cycles = 0, maxCycles = 3, clickedDuringExercise = 0;
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 4: Дыхательное упражнение</strong><br>Следуйте за кругом: он растет - вдох, уменьшается - выдох<br><small>Нажмите на круг, когда почувствуете желание прервать упражнение</small></div><div class="timer" id="breathTimer">Приготовьтесь...</div><div class="breathing-circle" id="breathCircle">Дышите</div>`;
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 4: Дыхательное упражнение</strong><br>Следуйте за кругом: он растет - вдох, уменьшается - выдох<br><small>Нажмите на круг, когда почувствуете желание прервать упражнение</small></div><div class="timer" id="breathTimer">Приготовьтесь...</div><div class="breathing-circle" id="breathCircle">Дышите</div>';
                 const circle = document.getElementById('breathCircle'), timer = document.getElementById('breathTimer');
                 circle.onclick = () => clickedDuringExercise++;
                 const doCycle = () => {
@@ -197,7 +200,7 @@
                         return;
                     }
                     cycles++;
-                    timer.textContent = `Цикл ${cycles} из ${maxCycles}`;
+                    timer.textContent = 'Цикл ' + cycles + ' из ' + maxCycles;
                     circle.classList.remove('exhale');
                     circle.classList.add('inhale');
                     circle.textContent = 'Вдох...';
@@ -214,11 +217,11 @@
                 let mathScore = 0, typingScore = 0, mathAttempts = 0, duration = 30000;
                 let currentNum1 = Math.floor(Math.random() * 20) + 1, currentNum2 = Math.floor(Math.random() * 20) + 1, currentAnswer = currentNum1 + currentNum2;
                 const words = ['фокус', 'баланс', 'гармония', 'спокойствие', 'энергия'], targetWord = words[Math.floor(Math.random() * words.length)];
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 5: Многозадачность</strong><br>Решайте примеры И печатайте слово одновременно!</div><div class="timer" id="multiTimer">30 секунд</div><div class="multitask-area"><div><h3>Задача 1: Решите пример</h3><div id="mathProblem" style="font-size: 24px; margin: 10px 0;">${currentNum1} + ${currentNum2} = ?</div><input type="number" class="task-input" id="mathInput" placeholder="Ваш ответ"></div><div><h3>Задача 2: Напечатайте слово</h3><div style="font-size: 24px; margin: 10px 0; color: #667eea;">${targetWord}</div><input type="text" class="task-input" id="typingInput" placeholder="Печатайте здесь"></div></div>`;
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 5: Многозадачность</strong><br>Решайте примеры И печатайте слово одновременно!</div><div class="timer" id="multiTimer">30 секунд</div><div class="multitask-area"><div><h3>Задача 1: Решите пример</h3><div id="mathProblem" style="font-size: 24px; margin: 10px 0;">' + currentNum1 + ' + ' + currentNum2 + ' = ?</div><input type="number" class="task-input" id="mathInput" placeholder="Ваш ответ"></div><div><h3>Задача 2: Напечатайте слово</h3><div style="font-size: 24px; margin: 10px 0; color: #667eea;">' + targetWord + '</div><input type="text" class="task-input" id="typingInput" placeholder="Печатайте здесь"></div></div>';
                 const mathInput = document.getElementById('mathInput'), typingInput = document.getElementById('typingInput'), timer = document.getElementById('multiTimer'), mathProblem = document.getElementById('mathProblem'), startTime = Date.now();
                 const updateTimer = setInterval(() => {
                     const timeRemaining = duration - (Date.now() - startTime);
-                    if (timeRemaining <= 0) { clearInterval(updateTimer); finishLevel(); } else { timer.textContent = `${Math.ceil(timeRemaining / 1000)} секунд`; }
+                    if (timeRemaining <= 0) { clearInterval(updateTimer); finishLevel(); } else { timer.textContent = Math.ceil(timeRemaining / 1000) + ' секунд'; }
                 }, 100);
                 mathInput.addEventListener('keyup', (e) => {
                     if (e.key === 'Enter' || mathInput.value == currentAnswer) {
@@ -228,7 +231,7 @@
                             currentNum1 = Math.floor(Math.random() * 20) + 1;
                             currentNum2 = Math.floor(Math.random() * 20) + 1;
                             currentAnswer = currentNum1 + currentNum2;
-                            mathProblem.textContent = `${currentNum1} + ${currentNum2} = ?`;
+                            mathProblem.textContent = currentNum1 + ' + ' + currentNum2 + ' = ?';
                             mathInput.value = '';
                         } else mathAttempts++;
                     }
@@ -246,7 +249,7 @@
             }
             level6_Balance() {
                 let ballX = 130, ballY = 130, movements = 0, duration = 20000;
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 6: Контроль и баланс</strong><br>Удерживайте шарик в центре круга, двигая мышью</div><div class="timer" id="balanceTimer">20 секунд</div><div class="timer" id="balanceScore">Точность: 0%</div><div class="balance-container" id="balanceContainer"><div class="balance-target"></div><div class="balance-ball" id="balanceBall"></div></div>`;
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 6: Контроль и баланс</strong><br>Удерживайте шарик в центре круга, двигая мышью</div><div class="timer" id="balanceTimer">20 секунд</div><div class="timer" id="balanceScore">Точность: 0%</div><div class="balance-container" id="balanceContainer"><div class="balance-target"></div><div class="balance-ball" id="balanceBall"></div></div>';
                 const container = document.getElementById('balanceContainer'), ball = document.getElementById('balanceBall'), timer = document.getElementById('balanceTimer'), scoreDisplay = document.getElementById('balanceScore'), startTime = Date.now();
                 let inTarget = 0, totalTime = 0;
                 container.addEventListener('mousemove', (e) => {
@@ -261,7 +264,7 @@
                     const distance = Math.sqrt(Math.pow(ballX - 120, 2) + Math.pow(ballY - 120, 2));
                     if (distance < 30) inTarget++;
                     totalTime++;
-                    scoreDisplay.textContent = `Точность: ${Math.round((inTarget / totalTime) * 100)}%`;
+                    scoreDisplay.textContent = 'Точность: ' + Math.round((inTarget / totalTime) * 100) + '%';
                     const timeRemaining = duration - (Date.now() - startTime);
                     if (timeRemaining <= 0) {
                         clearInterval(checkInterval);
@@ -270,7 +273,7 @@
                         if (movements / (duration / 1000) > 50) this.scores.anxiety += 1;
                         this.levelData.push({ level: 6, metric: 'Моторный контроль', accuracy: accuracy, movements: movements });
                         this.nextLevel();
-                    } else timer.textContent = `${Math.ceil(timeRemaining / 1000)} секунд`;
+                    } else timer.textContent = Math.ceil(timeRemaining / 1000) + ' секунд';
                 }, 100);
             }
             level7_Priority() {
@@ -283,7 +286,7 @@
                 ].sort(() => Math.random() - 0.5);
                 let draggedElement = null;
                 const startTime = Date.now();
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 7: Управление приоритетами</strong><br>Расположите задачи в порядке важности (сверху вниз)</div><div class="task-list" id="taskList"></div><button class="btn" onclick="game.checkPriorities()">Готово</button>`;
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 7: Управление приоритетами</strong><br>Расположите задачи в порядке важности (сверху вниз)</div><div class="task-list" id="taskList"></div><button class="btn" onclick="game.checkPriorities()">Готово</button>';
                 const taskList = document.getElementById('taskList');
                 tasks.forEach((task, index) => {
                     const taskItem = document.createElement('div');
@@ -291,7 +294,7 @@
                     taskItem.draggable = true;
                     taskItem.dataset.id = task.id;
                     taskItem.dataset.priority = task.priority;
-                    taskItem.textContent = `${index + 1}. ${task.text}`;
+                    taskItem.textContent = (index + 1) + '. ' + task.text;
                     taskItem.addEventListener('dragstart', () => { draggedElement = taskItem; taskItem.classList.add('dragging'); });
                     taskItem.addEventListener('dragend', () => taskItem.classList.remove('dragging'));
                     taskItem.addEventListener('dragover', (e) => e.preventDefault());
@@ -301,9 +304,9 @@
                             const allTasks = [...taskList.querySelectorAll('.task-item')];
                             const draggedIndex = allTasks.indexOf(draggedElement), targetIndex = allTasks.indexOf(taskItem);
                             if (draggedIndex < targetIndex) taskItem.after(draggedElement); else taskItem.before(draggedElement);
-                            allTasks.forEach((task, i) => {
+                            taskList.querySelectorAll('.task-item').forEach((task, i) => {
                                 const text = task.textContent.substring(task.textContent.indexOf('.') + 2);
-                                task.textContent = `${i + 1}. ${text}`;
+                                task.textContent = (i + 1) + '. ' + text;
                             });
                         }
                     });
@@ -325,9 +328,8 @@
             level8_Focus() {
                 const gridSize = 25, targetNumber = 7;
                 let foundTargets = 0, totalTargets = 0, wrongClicks = 0, duration = 25000;
-                this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 8: Концентрация внимания</strong><br>Найдите и нажмите все числа "${targetNumber}"</div><div class="timer" id="focusTimer">25 секунд</div><div class="timer" id="focusScore">Найдено: 0</div><div class="focus-grid" id="focusGrid"></div>`;
-                const grid = document.getElementById('focusGrid'), timer = document.getElementById('focusTimer'), scoreDisplay = document.getElementById('focus
-Score'), startTime = Date.now();
+                this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 8: Концентрация внимания</strong><br>Найдите и нажмите все числа "' + targetNumber + '"</div><div class="timer" id="focusTimer">25 секунд</div><div class="timer" id="focusScore">Найдено: 0</div><div class="focus-grid" id="focusGrid"></div>';
+                const grid = document.getElementById('focusGrid'), timer = document.getElementById('focusTimer'), scoreDisplay = document.getElementById('focusScore'), startTime = Date.now();
                 for (let i = 0; i < gridSize; i++) {
                     const cell = document.createElement('div');
                     cell.className = 'focus-cell';
@@ -336,13 +338,13 @@ Score'), startTime = Date.now();
                     cell.onclick = () => {
                         if (cell.dataset.clicked) return;
                         cell.dataset.clicked = 'true';
-                        if (cell.dataset.target) { foundTargets++; cell.classList.add('target'); scoreDisplay.textContent = `Найдено: ${foundTargets}/${totalTargets}`; if (foundTargets === totalTargets) { clearInterval(timerInterval); finishLevel(); } } else { wrongClicks++; cell.style.background = '#ff6b6b'; setTimeout(() => cell.style.background = '#e9ecef', 200); }
+                        if (cell.dataset.target) { foundTargets++; cell.classList.add('target'); scoreDisplay.textContent = 'Найдено: ' + foundTargets + '/' + totalTargets; if (foundTargets === totalTargets) { clearInterval(timerInterval); finishLevel(); } } else { wrongClicks++; cell.style.background = '#ff6b6b'; setTimeout(() => cell.style.background = '#e9ecef', 200); }
                     };
                     grid.appendChild(cell);
                 }
                 const timerInterval = setInterval(() => {
                     const timeRemaining = duration - (Date.now() - startTime);
-                    if (timeRemaining <= 0) { clearInterval(timerInterval); finishLevel(); } else timer.textContent = `${Math.ceil(timeRemaining / 1000)} секунд`;
+                    if (timeRemaining <= 0) { clearInterval(timerInterval); finishLevel(); } else timer.textContent = Math.ceil(timeRemaining / 1000) + ' секунд';
                 }, 100);
                 const finishLevel = () => {
                     const accuracy = totalTargets > 0 ? foundTargets / totalTargets : 0, errorRate = wrongClicks / (foundTargets + wrongClicks);
@@ -372,7 +374,7 @@ Score'), startTime = Date.now();
                         return;
                     }
                     const emotion = emotions[round], startTime = Date.now();
-                    this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 9: Эмоции</strong><br>Что вы чувствуете, глядя на это?</div><div class="timer">Вопрос ${round + 1} из ${maxRounds}</div><div class="emotion-face">${emotion.emoji}</div><div class="emotion-buttons"><button class="btn" onclick="game.selectEmotion('positive', ${startTime})">Позитивное</button><button class="btn" onclick="game.selectEmotion('negative', ${startTime})">Негативное</button><button class="btn" onclick="game.selectEmotion('neutral', ${startTime})">Нейтральное</button></div>`;
+                    this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 9: Эмоции</strong><br>Что вы чувствуете, глядя на это?</div><div class="timer">Вопрос ' + (round + 1) + ' из ' + maxRounds + '</div><div class="emotion-face">' + emotion.emoji + '</div><div class="emotion-buttons"><button class="btn" onclick="game.selectEmotion(\'positive\', ' + startTime + ')">Позитивное</button><button class="btn" onclick="game.selectEmotion(\'negative\', ' + startTime + ')">Негативное</button><button class="btn" onclick="game.selectEmotion(\'neutral\', ' + startTime + ')">Нейтральное</button></div>';
                     this.currentEmotionRound = round;
                     this.emotionResponseTimes = responseTimes;
                     this.emotionNegativeCount = { val: negativeSelections };
@@ -395,7 +397,7 @@ Score'), startTime = Date.now();
                 }
                 setTimeout(() => {
                     const emotion = emotions[round], newStartTime = Date.now();
-                    this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 9: Эмоции</strong><br>Что вы чувствуете, глядя на это?</div><div class="timer">Вопрос ${round + 1} из ${maxRounds}</div><div class="emotion-face">${emotion.emoji}</div><div class="emotion-buttons"><button class="btn" onclick="game.selectEmotion('positive', ${newStartTime})">Позитивное</button><button class="btn" onclick="game.selectEmotion('negative', ${newStartTime})">Негативное</button><button class="btn" onclick="game.selectEmotion('neutral', ${newStartTime})">Нейтральное</button></div>`;
+                    this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 9: Эмоции</strong><br>Что вы чувствуете, глядя на это?</div><div class="timer">Вопрос ' + (round + 1) + ' из ' + maxRounds + '</div><div class="emotion-face">' + emotion.emoji + '</div><div class="emotion-buttons"><button class="btn" onclick="game.selectEmotion(\'positive\', ' + newStartTime + ')">Позитивное</button><button class="btn" onclick="game.selectEmotion(\'negative\', ' + newStartTime + ')">Негативное</button><button class="btn" onclick="game.selectEmotion(\'neutral\', ' + newStartTime + ')">Нейтральное</button></div>';
                     this.currentEmotionRound = round;
                 }, 500);
             }
@@ -414,7 +416,7 @@ Score'), startTime = Date.now();
                         return;
                     }
                     const scenario = scenarios[scenarioIndex], startTime = Date.now();
-                    this.gameArea.innerHTML = `<div class="instruction"><strong>Уровень 10: Принятие решений</strong><br>Выберите, как бы вы поступили</div><div class="decision-scenario"><p style="line-height: 1.6;">${scenario.text}</p></div><div class="decision-options" id="decisionOptions"></div>`;
+                    this.gameArea.innerHTML = '<div class="instruction"><strong>Уровень 10: Принятие решений</strong><br>Выберите, как бы вы поступили</div><div class="decision-scenario"><p style="line-height: 1.6;">' + scenario.text + '</p></div><div class="decision-options" id="decisionOptions"></div>';
                     const optionsContainer = document.getElementById('decisionOptions');
                     scenario.options.forEach((option, index) => {
                         const optionDiv = document.createElement('div');
@@ -457,22 +459,22 @@ Score'), startTime = Date.now();
                 if (recommendations.length === 0) recommendations.push('✨ <strong>Отличная работа!</strong> Продолжайте поддерживать здоровый баланс между работой и отдыхом.');
                 let detailsHTML = '';
                 this.levelData.forEach(level => {
-                    detailsHTML += `<div style="margin: 15px 0; padding: 10px; background: white; border-radius: 5px;"><strong>Уровень ${level.level}: ${level.metric}</strong><br>`;
+                    detailsHTML += '<div style="margin: 15px 0; padding: 10px; background: white; border-radius: 5px;"><strong>Уровень ' + level.level + ': ' + level.metric + '</strong><br>';
                     switch(level.level) {
-                        case 1: detailsHTML += `Среднее время реакции: ${Math.round(level.value)} мс<br>`; if (level.value < 250) detailsHTML += `<small style="color: #ffa94d;">Быстрая реакция может указывать на повышенную возбудимость нервной системы</small>`; else if (level.value > 500) detailsHTML += `<small style="color: #868e96;">Замедленная реакция может быть признаком усталости</small>`; else detailsHTML += `<small style="color: #51cf66;">Отличная скорость реакции</small>`; break;
-                        case 2: detailsHTML += `Точность: ${Math.round(level.value * 100)}% (${level.correct}/${level.total})<br>`; if (level.value >= 0.8) detailsHTML += `<small style="color: #51cf66;">Отличная краткосрочная память</small>`; else if (level.value < 0.5) detailsHTML += `<small style="color: #ff6b6b;">Возможны проблемы с концентрацией</small>`; break;
-                        case 3: detailsHTML += `Точность: ${Math.round(level.accuracy * 100)}%, Время: ${Math.round(level.avgTime / 1000)} сек<br>`; if (level.accuracy >= 0.8) detailsHTML += `<small style="color: #51cf66;">Хороший когнитивный контроль</small>`; else detailsHTML += `<small style="color: #ffa94d;">Когнитивная интерференция</small>`; break;
-                        case 4: detailsHTML += `Терпеливость: ${level.patience}/3, Прерываний: ${level.interruptions}<br>`; if (level.interruptions === 0) detailsHTML += `<small style="color: #51cf66;">Отличная способность к саморегуляции</small>`; else if (level.interruptions > 3) detailsHTML += `<small style="color: #ff6b6b;">Повышенная импульсивность</small>`; break;
-                        case 5: detailsHTML += `Математика: ${level.mathScore}, Печать: ${level.typingScore}, Общий балл: ${level.totalScore}<br>`; if (level.totalScore >= 10) detailsHTML += `<small style="color: #51cf66;">Отличная многозадачность</small>`; else if (level.totalScore < 5) detailsHTML += `<small style="color: #ffa94d;">Трудности с многозадачностью</small>`; break;
-                        case 6: detailsHTML += `Точность: ${Math.round(level.accuracy)}%, Движений: ${level.movements}<br>`; if (level.accuracy >= 60) detailsHTML += `<small style="color: #51cf66;">Хороший моторный контроль</small>`; else detailsHTML += `<small style="color: #ffa94d;">Возможна повышенная тревожность</small>`; break;
-                        case 7: detailsHTML += `Точность: ${Math.round(level.accuracy * 100)}%, Время: ${Math.round(level.timeSpent / 1000)} сек<br>`; if (level.accuracy >= 0.75) detailsHTML += `<small style="color: #51cf66;">Хорошие навыки планирования</small>`; else detailsHTML += `<small style="color: #ffa94d;">Сложности с приоритетами</small>`; break;
-                        case 8: detailsHTML += `Точность: ${Math.round(level.accuracy * 100)}%, Ошибок: ${level.wrongClicks}<br>`; if (level.accuracy >= 0.8 && level.errorRate < 0.2) detailsHTML += `<small style="color: #51cf66;">Отличная концентрация</small>`; else if (level.errorRate > 0.4) detailsHTML += `<small style="color: #ff6b6b;">Высокая отвлекаемость</small>`; break;
-                        case 9: detailsHTML += `Негативных выборов: ${Math.round(level.negativeRate * 100)}%<br>`; if (level.negativeRate > 0.5) detailsHTML += `<small style="color: #ff6b6b;">Преобладание негативного восприятия</small>`; else if (level.negativeRate < 0.3) detailsHTML += `<small style="color: #51cf66;">Позитивный эмоциональный фон</small>`; break;
-                        case 10: detailsHTML += `Среднее время решения: ${Math.round(level.avgDecisionTime / 1000)} сек<br>`; if (level.avgDecisionTime < 3000) detailsHTML += `<small style="color: #ffa94d;">Быстрые импульсивные решения</small>`; else if (level.avgDecisionTime > 15000) detailsHTML += `<small style="color: #868e96;">Долгое обдумывание</small>`; else detailsHTML += `<small style="color: #51cf66;">Взвешенный подход</small>`; break;
+                        case 1: detailsHTML += 'Среднее время реакции: ' + Math.round(level.value) + ' мс<br>'; if (level.value < 250) detailsHTML += '<small style="color: #ffa94d;">Быстрая реакция может указывать на повышенную возбудимость нервной системы</small>'; else if (level.value > 500) detailsHTML += '<small style="color: #868e96;">Замедленная реакция может быть признаком усталости</small>'; else detailsHTML += '<small style="color: #51cf66;">Отличная скорость реакции</small>'; break;
+                        case 2: detailsHTML += 'Точность: ' + Math.round(level.value * 100) + '% (' + level.correct + '/' + level.total + ')<br>'; if (level.value >= 0.8) detailsHTML += '<small style="color: #51cf66;">Отличная краткосрочная память</small>'; else if (level.value < 0.5) detailsHTML += '<small style="color: #ff6b6b;">Возможны проблемы с концентрацией</small>'; break;
+                        case 3: detailsHTML += 'Точность: ' + Math.round(level.accuracy * 100) + '%, Время: ' + Math.round(level.avgTime / 1000) + ' сек<br>'; if (level.accuracy >= 0.8) detailsHTML += '<small style="color: #51cf66;">Хороший когнитивный контроль</small>'; else detailsHTML += '<small style="color: #ffa94d;">Когнитивная интерференция</small>'; break;
+                        case 4: detailsHTML += 'Терпеливость: ' + level.patience + '/3, Прерываний: ' + level.interruptions + '<br>'; if (level.interruptions === 0) detailsHTML += '<small style="color: #51cf66;">Отличная способность к саморегуляции</small>'; else if (level.interruptions > 3) detailsHTML += '<small style="color: #ff6b6b;">Повышенная импульсивность</small>'; break;
+                        case 5: detailsHTML += 'Математика: ' + level.mathScore + ', Печать: ' + level.typingScore + ', Общий балл: ' + level.totalScore + '<br>'; if (level.totalScore >= 10) detailsHTML += '<small style="color: #51cf66;">Отличная многозадачность</small>'; else if (level.totalScore < 5) detailsHTML += '<small style="color: #ffa94d;">Трудности с многозадачностью</small>'; break;
+                        case 6: detailsHTML += 'Точность: ' + Math.round(level.accuracy) + '%, Движений: ' + level.movements + '<br>'; if (level.accuracy >= 60) detailsHTML += '<small style="color: #51cf66;">Хороший моторный контроль</small>'; else detailsHTML += '<small style="color: #ffa94d;">Возможна повышенная тревожность</small>'; break;
+                        case 7: detailsHTML += 'Точность: ' + Math.round(level.accuracy * 100) + '%, Время: ' + Math.round(level.timeSpent / 1000) + ' сек<br>'; if (level.accuracy >= 0.75) detailsHTML += '<small style="color: #51cf66;">Хорошие навыки планирования</small>'; else detailsHTML += '<small style="color: #ffa94d;">Сложности с приоритетами</small>'; break;
+                        case 8: detailsHTML += 'Точность: ' + Math.round(level.accuracy * 100) + '%, Ошибок: ' + level.wrongClicks + '<br>'; if (level.accuracy >= 0.8 && level.errorRate < 0.2) detailsHTML += '<small style="color: #51cf66;">Отличная концентрация</small>'; else if (level.errorRate > 0.4) detailsHTML += '<small style="color: #ff6b6b;">Высокая отвлекаемость</small>'; break;
+                        case 9: detailsHTML += 'Негативных выборов: ' + Math.round(level.negativeRate * 100) + '%<br>'; if (level.negativeRate > 0.5) detailsHTML += '<small style="color: #ff6b6b;">Преобладание негативного восприятия</small>'; else if (level.negativeRate < 0.3) detailsHTML += '<small style="color: #51cf66;">Позитивный эмоциональный фон</small>'; break;
+                        case 10: detailsHTML += 'Среднее время решения: ' + Math.round(level.avgDecisionTime / 1000) + ' сек<br>'; if (level.avgDecisionTime < 3000) detailsHTML += '<small style="color: #ffa94d;">Быстрые импульсивные решения</small>'; else if (level.avgDecisionTime > 15000) detailsHTML += '<small style="color: #868e96;">Долгое обдумывание</small>'; else detailsHTML += '<small style="color: #51cf66;">Взвешенный подход</small>'; break;
                     }
-                    detailsHTML += `</div>`;
+                    detailsHTML += '</div>';
                 });
-                this.gameArea.innerHTML = `<div class="result-screen"><h2>Результаты анализа</h2><div class="result-score" style="color: ${statusColor}">${overallScore}%</div><div style="font-size: 24px; margin: 10px 0; color: ${statusColor}">Состояние: ${status}</div><p style="margin: 20px 0; line-height: 1.6;">${statusDescription}</p><div class="result-card"><h3>Детальный анализ</h3><div class="metric"><span>Уровень стресса:</span><div class="metric-bar"><div class="metric-fill" style="width: ${stressLevel}%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>${Math.round(stressLevel)}%</span></div><div class="metric"><span>Концентрация:</span><div class="metric-bar"><div class="metric-fill" style="width: ${focusLevel}%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>${Math.round(focusLevel)}%</span></div><div class="metric"><span>Когнитивные функции:</span><div class="metric-bar"><div class="metric-fill" style="width: ${cognitiveLevel}%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>${Math.round(cognitiveLevel)}%</span></div><div class="metric"><span>Эмоциональное состояние:</span><div class="metric-bar"><div class="metric-fill" style="width: ${emotionalLevel}%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>${Math.round(emotionalLevel)}%</span></div><div class="metric"><span>Риск выгорания:</span><div class="metric-bar"><div class="metric-fill" style="width: ${burnoutLevel}%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>${Math.round(burnoutLevel)}%</span></div><div class="metric"><span>Тревожность:</span><div class="metric-bar"><div class="metric-fill" style="width: ${anxietyLevel}%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>${Math.round(anxietyLevel)}%</span></div><div class="metric"><span>Терпеливость:</span><div class="metric-bar"><div class="metric-fill" style="width: ${patienceLevel}%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>${Math.round(patienceLevel)}%</span></div></div><div class="result-card"><h3>📋 Персональные рекомендации</h3>${recommendations.map(rec => `<div class="recommendation">${rec}</div>`).join('')}</div><div class="result-card"><h3>📊 Подробные данные по уровням</h3>${detailsHTML}</div><div class="result-card" style="background: #e7f5ff; border-left: 4px solid #339af0;"><h3>💡 Что дальше?</h3><p style="line-height: 1.6; margin: 10px 0;"><strong>Регулярность:</strong> Рекомендуется проходить тест раз в 2-4 недели для отслеживания динамики.<br><br><strong>Действия:</strong> Начните с 1-2 рекомендаций, которые кажутся вам наиболее актуальными.<br><br><strong>Поддержка:</strong> Если ситуация не улучшается или ухудшается, обратитесь к психологу или психотерапевту.</p></div><div style="margin-top: 30px;"><button class="btn" onclick="game.restart()">🔄 Пройти снова</button><button class="btn" onclick="game.shareResults()">📤 Сохранить результаты</button></div></div>`;
+                this.gameArea.innerHTML = '<div class="result-screen"><h2>Результаты анализа</h2><div class="result-score" style="color: ' + statusColor + '">' + overallScore + '%</div><div style="font-size: 24px; margin: 10px 0; color: ' + statusColor + '">Состояние: ' + status + '</div><p style="margin: 20px 0; line-height: 1.6;">' + statusDescription + '</p><div class="result-card"><h3>Детальный анализ</h3><div class="metric"><span>Уровень стресса:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + stressLevel + '%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>' + Math.round(stressLevel) + '%</span></div><div class="metric"><span>Концентрация:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + focusLevel + '%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>' + Math.round(focusLevel) + '%</span></div><div class="metric"><span>Когнитивные функции:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + cognitiveLevel + '%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>' + Math.round(cognitiveLevel) + '%</span></div><div class="metric"><span>Эмоциональное состояние:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + emotionalLevel + '%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>' + Math.round(emotionalLevel) + '%</span></div><div class="metric"><span>Риск выгорания:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + burnoutLevel + '%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>' + Math.round(burnoutLevel) + '%</span></div><div class="metric"><span>Тревожность:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + anxietyLevel + '%; background: linear-gradient(90deg, #51cf66 0%, #ff6b6b 100%)"></div></div><span>' + Math.round(anxietyLevel) + '%</span></div><div class="metric"><span>Терпеливость:</span><div class="metric-bar"><div class="metric-fill" style="width: ' + patienceLevel + '%; background: linear-gradient(90deg, #ff6b6b 0%, #51cf66 100%)"></div></div><span>' + Math.round(patienceLevel) + '%</span></div></div><div class="result-card"><h3>📋 Персональные рекомендации</h3>' + recommendations.map(rec => '<div class="recommendation">' + rec + '</div>').join('') + '</div><div class="result-card"><h3>📊 Подробные данные по уровням</h3>' + detailsHTML + '</div><div class="result-card" style="background: #e7f5ff; border-left: 4px solid #339af0;"><h3>💡 Что дальше?</h3><p style="line-height: 1.6; margin: 10px 0;"><strong>Регулярность:</strong> Рекомендуется проходить тест раз в 2-4 недели для отслеживания динамики.<br><br><strong>Действия:</strong> Начните с 1-2 рекомендаций, которые кажутся вам наиболее актуальными.<br><br><strong>Поддержка:</strong> Если ситуация не улучшается или ухудшается, обратитесь к психологу или психотерапевту.</p></div><div style="margin-top: 30px;"><button class="btn" onclick="game.restart()">🔄 Пройти снова</button><button class="btn" onclick="game.shareResults()">📤 Сохранить результаты</button></div></div>';
                 setTimeout(() => document.querySelectorAll('.metric-fill').forEach((fill, index) => setTimeout(() => fill.style.transition = 'width 1s ease-out', index * 100)), 100);
             }
             restart() {
@@ -483,10 +485,10 @@ Score'), startTime = Date.now();
                 this.init();
             }
             shareResults() {
-                const results = `Результаты психологического теста "Внутренний Баланс"\n═══════════════════════════════════════════════\n\n📊 ОБЩИЕ ПОКАЗАТЕЛИ:\n${this.levelData.map(level => `\n▫️ ${level.metric}\n   ${JSON.stringify(level, null, 2).split('\n').slice(1, -1).join('\n   ')}`).join('')}\n\n═══════════════════════════════════════════════\nТест пройден: ${new Date().toLocaleString('ru-RU')}`;
+                const results = 'Результаты психологического теста "Внутренний Баланс"\n═══════════════════════════════════════════════\n\n📊 ОБЩИЕ ПОКАЗАТЕЛИ:\n' + this.levelData.map(level => '\n▫️ ' + level.metric + '\n   ' + JSON.stringify(level, null, 2).split('\n').slice(1, -1).join('\n   ')).join('') + '\n\n═══════════════════════════════════════════════\nТест пройден: ' + new Date().toLocaleString('ru-RU');
                 const blob = new Blob([results], { type: 'text/plain;charset=utf-8' }), url = URL.createObjectURL(blob), a = document.createElement('a');
                 a.href = url;
-                a.download = `psych-test-${Date.now()}.txt`;
+                a.download = 'psych-test-' + Date.now() + '.txt';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
