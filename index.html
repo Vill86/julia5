@@ -614,7 +614,7 @@
                     if (levelNum === 7) initLevel7();
                     if (levelNum === 8) initLevel8();
                     if (levelNum === 9) initLevel9();
-                    if (levelNum === 10) initLevel10();
+                    if (levelNum === 10) ();
                     if (levelNum === 11) initLevel11();
                     if (levelNum === 12) initLevel12();
                     if (levelNum === 13) initLevel13();
@@ -896,63 +896,63 @@
 
             // === УРОВЕНЬ 10 — ИСПРАВЛЕННЫЙ ===
             function initLevel10() {
-                // Клонируем кнопки, чтобы избежать дублирования обработчиков
-                const oldButtons = document.querySelectorAll('#level-10 .rhythm-button');
-                oldButtons.forEach(btn => {
-                    const newBtn = btn.cloneNode(true);
-                    btn.parentNode.replaceChild(newBtn, btn);
-                });
+    // Сначала удалим старые обработчики, клонировав кнопки
+    const oldButtons = document.querySelectorAll('#level-10 .rhythm-button');
+    oldButtons.forEach(btn => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+    });
 
-                // Получаем свежие кнопки
-                const buttons = Array.from(document.querySelectorAll('#level-10 .rhythm-button'));
-                const statusEl = document.getElementById('rhythm-status');
-                let sequence = [];
-                let playerSequence = [];
-                let isPlaying = false;
+    // Теперь получим свежие кнопки, которые реально в DOM
+    const buttons = Array.from(document.querySelectorAll('#level-10 .rhythm-button'));
+    const statusEl = document.getElementById('rhythm-status');
+    let sequence = [];
+    let playerSequence = [];
+    let isPlaying = false;
 
-                function generateSequence() {
-                    sequence = [];
-                    for (let i = 0; i < 4; i++) {
-                        sequence.push(Math.floor(Math.random() * 4));
-                    }
-                }
+    function generateSequence() {
+        sequence = [];
+        for (let i = 0; i < 4; i++) {
+            sequence.push(Math.floor(Math.random() * 4));
+        }
+    }
 
-                async function playSequence() {
-                    isPlaying = true;
-                    statusEl.textContent = 'Смотри внимательно!';
-                    for (let i = 0; i < sequence.length; i++) {
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                        buttons[sequence[i]].classList.add('active-pulse');
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                        buttons[sequence[i]].classList.remove('active-pulse');
-                    }
-                    isPlaying = false;
-                    statusEl.textContent = 'Твоя очередь!';
-                }
+    async function playSequence() {
+        isPlaying = true;
+        statusEl.textContent = 'Смотри внимательно!';
+        for (let i = 0; i < sequence.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            buttons[sequence[i]].classList.add('active-pulse');
+            await new Promise(resolve => setTimeout(resolve, 500));
+            buttons[sequence[i]].classList.remove('active-pulse');
+        }
+        isPlaying = false;
+        statusEl.textContent = 'Твоя очередь!';
+    }
 
-                buttons.forEach((btn, index) => {
-                    btn.addEventListener('click', () => {
-                        if (isPlaying) return;
-                        btn.classList.add('active-pulse');
-                        setTimeout(() => btn.classList.remove('active-pulse'), 300);
-                        playerSequence.push(index);
-                        if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
-                            handleIncorrect(null);
-                            playerSequence = [];
-                            statusEl.textContent = 'Попробуй снова!';
-                            setTimeout(() => {
-                                generateSequence();
-                                playSequence();
-                            }, 1000);
-                        } else if (playerSequence.length === sequence.length) {
-                            handleCorrect();
-                        }
-                    });
-                });
-
-                generateSequence();
-                setTimeout(playSequence, 500);
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            if (isPlaying) return;
+            btn.classList.add('active-pulse');
+            setTimeout(() => btn.classList.remove('active-pulse'), 300);
+            playerSequence.push(index);
+            if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
+                handleIncorrect(null);
+                playerSequence = [];
+                statusEl.textContent = 'Попробуй снова!';
+                setTimeout(() => {
+                    generateSequence();
+                    playSequence();
+                }, 1000);
+            } else if (playerSequence.length === sequence.length) {
+                handleCorrect();
             }
+        });
+    });
+
+    generateSequence();
+    setTimeout(playSequence, 500);
+}
 
             // === УРОВЕНЬ 11 ===
             function initLevel11() {
