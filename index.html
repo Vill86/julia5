@@ -107,7 +107,7 @@
             75% { transform: translateX(10px); }
         }
 
-        /* Стили для уровня 2 (Мемори) */
+        /* Уровень 2 */
         #level-2 .clickable {
             width: 60px;
             height: 60px;
@@ -119,13 +119,13 @@
             font-size: 3rem;
             user-select: none;
         }
-        #level-2 .clickable.flipped, 
+        #level-2 .clickable.flipped,
         #level-2 .clickable.matched {
             background-color: #fff59d;
             color: #000;
         }
 
-        /* Стили для уровня 5 (Кодовый замок) */
+        /* Уровень 5 */
         #code-display {
             font-size: 2rem;
             letter-spacing: 10px;
@@ -139,22 +139,22 @@
             align-items: center;
             justify-content: center;
         }
-        #keypad { 
-            display: flex; 
-            gap: 10px; 
+        #keypad {
+            display: flex;
+            gap: 10px;
             justify-content: center;
         }
-        #keypad .clickable { 
-            font-size: 2rem; 
-            border: 1px solid #ccc; 
-            width: 60px; 
+        #keypad .clickable {
+            font-size: 2rem;
+            border: 1px solid #ccc;
+            width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Стили для уровня 6 (Счёт) */
+        /* Уровень 6 */
         .count-items {
             display: flex;
             flex-wrap: wrap;
@@ -163,7 +163,7 @@
             margin: 20px 0;
         }
 
-        /* Стили для уровня 7 (Лабиринт) */
+        /* Уровень 7 */
         #maze-container {
             display: grid;
             grid-template-columns: repeat(5, 60px);
@@ -189,7 +189,7 @@
             background-color: #fff59d;
         }
 
-        /* Стили для уровня 8 (Пазл) */
+        /* Уровень 8 */
         #puzzle-container {
             display: grid;
             grid-template-columns: repeat(3, 80px);
@@ -213,7 +213,7 @@
             background-color: #e0e0e0;
         }
 
-        /* Стили для уровня 9 (Тень) */
+        /* Уровень 9 */
         .shadow-game {
             display: flex;
             flex-direction: column;
@@ -223,7 +223,7 @@
             font-size: 5rem;
         }
 
-        /* Стили для уровня 10 (Ритм) */
+        /* Уровень 10 */
         .rhythm-button {
             width: 100px;
             height: 100px;
@@ -241,7 +241,7 @@
             50% { transform: scale(1.3); background-color: #ffeb3b; }
         }
 
-        /* Стили для уровня 11 (Найди пару) */
+        /* Уровень 11 */
         .pair-items {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -271,7 +271,7 @@
             cursor: default;
         }
 
-        /* Стили для уровня 13 (Поймай предмет) */
+        /* Уровень 13 */
         #catch-game {
             position: relative;
             width: 100%;
@@ -293,7 +293,7 @@
             cursor: pointer;
         }
 
-        /* Стили для уровня 14 (Рисование) */
+        /* Уровень 14 */
         #drawing-canvas {
             border: 3px solid #00796b;
             border-radius: 10px;
@@ -323,7 +323,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
-        /* Стили для уровня 15 (Найди отличия) */
+        /* Уровень 15 */
         #differences-container {
             display: flex;
             gap: 20px;
@@ -352,7 +352,7 @@
             cursor: default;
         }
 
-        /* Прогресс бар */
+        /* Прогресс */
         .progress-container {
             width: 100%;
             height: 20px;
@@ -376,7 +376,7 @@
 </head>
 <body>
     <div class="game-container">
-        <!-- Стартовый экран -->
+        <!-- Старт -->
         <div id="start-screen" class="active">
             <h1>Приключения Финника</h1>
             <p>Помоги бельчонку Финнику найти его Волшебный Жёлудь, решая 15 головоломок!</p>
@@ -384,7 +384,7 @@
             <button id="start-button">Начать игру!</button>
         </div>
 
-        <!-- Контейнер для уровней -->
+        <!-- Игровая зона -->
         <div id="game-area">
             <div id="game-header">
                 <h1>Уровень <span id="level-number">1</span> / 15</h1>
@@ -394,7 +394,7 @@
                 <div id="message-area"></div>
             </div>
 
-            <!-- Уровень 1: Найди лишнее -->
+            <!-- Уровни -->
             <div id="level-1" class="level">
                 <h2>Найди лишний предмет</h2>
                 <div class="items-grid">
@@ -405,13 +405,11 @@
                 </div>
             </div>
 
-            <!-- Уровень 2: Мемори -->
             <div id="level-2" class="level">
                 <h2>Найди все пары</h2>
                 <div id="memory-grid" class="items-grid"></div>
             </div>
 
-            <!-- Уровень 3: Правильный порядок -->
             <div id="level-3" class="level">
                 <h2>Нажми по порядку: от маленького к большому</h2>
                 <div class="items-grid">
@@ -421,7 +419,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 4: Смешай цвета -->
             <div id="level-4" class="level">
                 <h2>Смешай жёлтый и синий, чтобы получить зелёный</h2>
                 <div class="items-grid">
@@ -431,7 +428,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 5: Кодовый замок -->
             <div id="level-5" class="level">
                 <h2>Введи код: 💧🍃💎</h2>
                 <p>💧=1, 🍃=2, 💎=3</p>
@@ -443,7 +439,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 6: Посчитай предметы -->
             <div id="level-6" class="level">
                 <h2>Сколько здесь орешков?</h2>
                 <div class="count-items">
@@ -460,21 +455,18 @@
                 </div>
             </div>
 
-            <!-- Уровень 7: Лабиринт -->
             <div id="level-7" class="level">
                 <h2>Проведи белочку к жёлудю</h2>
                 <p style="font-size: 0.9rem;">Нажимай на зелёные клетки по порядку</p>
                 <div id="maze-container"></div>
             </div>
 
-            <!-- Уровень 8: Пазл-пятнашки -->
             <div id="level-8" class="level">
                 <h2>Собери картинку по порядку</h2>
                 <p style="font-size: 0.9rem;">Нажимай на плитки рядом с пустым местом</p>
                 <div id="puzzle-container"></div>
             </div>
 
-            <!-- Уровень 9: Найди тень -->
             <div id="level-9" class="level">
                 <h2>Какая тень подходит к грибу?</h2>
                 <div class="shadow-game">
@@ -487,7 +479,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 10: Повтори ритм -->
             <div id="level-10" class="level">
                 <h2>Запомни и повтори последовательность</h2>
                 <p id="rhythm-status">Смотри внимательно!</p>
@@ -499,7 +490,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 11: Найди пару (соединение) -->
             <div id="level-11" class="level">
                 <h2>Соедини животных с их домами</h2>
                 <div class="pair-items">
@@ -516,7 +506,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 12: Математика -->
             <div id="level-12" class="level">
                 <h2>Реши пример</h2>
                 <p style="font-size: 2rem; margin: 20px 0;">3 + 2 = ?</p>
@@ -527,7 +516,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 13: Поймай предметы -->
             <div id="level-13" class="level">
                 <h2>Поймай 5 орешков!</h2>
                 <p>Пойманы: <span id="caught-count">0</span> / 5</p>
@@ -536,7 +524,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 14: Нарисуй фигуру -->
             <div id="level-14" class="level">
                 <h2>Нарисуй круг 🔵</h2>
                 <div class="color-palette">
@@ -552,7 +539,6 @@
                 </div>
             </div>
 
-            <!-- Уровень 15: Найди 3 отличия -->
             <div id="level-15" class="level">
                 <h2>Найди 3 отличия на картинке справа</h2>
                 <p>Найдено: <span id="differences-found">0</span> / 3</p>
@@ -570,7 +556,7 @@
             </div>
         </div>
 
-        <!-- Финальный экран -->
+        <!-- Финал -->
         <div id="final-screen">
             <h1>🎉 Ура! Победа! 🎉</h1>
             <p>Ты помог Финнику найти его Волшебный Жёлудь! Ты прошёл все 15 уровней!</p>
@@ -908,9 +894,17 @@
                 });
             }
 
-            // === УРОВЕНЬ 10 ===
+            // === УРОВЕНЬ 10 — ИСПРАВЛЕННЫЙ ===
             function initLevel10() {
-                const buttons = document.querySelectorAll('#level-10 .rhythm-button');
+                // Клонируем кнопки, чтобы избежать дублирования обработчиков
+                const oldButtons = document.querySelectorAll('#level-10 .rhythm-button');
+                oldButtons.forEach(btn => {
+                    const newBtn = btn.cloneNode(true);
+                    btn.parentNode.replaceChild(newBtn, btn);
+                });
+
+                // Получаем свежие кнопки
+                const buttons = Array.from(document.querySelectorAll('#level-10 .rhythm-button'));
                 const statusEl = document.getElementById('rhythm-status');
                 let sequence = [];
                 let playerSequence = [];
@@ -937,18 +931,19 @@
                 }
 
                 buttons.forEach((btn, index) => {
-                    const newBtn = btn.cloneNode(true);
-                    btn.parentNode.replaceChild(newBtn, btn);
-                    newBtn.addEventListener('click', () => {
+                    btn.addEventListener('click', () => {
                         if (isPlaying) return;
-                        newBtn.classList.add('active-pulse');
-                        setTimeout(() => newBtn.classList.remove('active-pulse'), 300);
-                        playerSequence.push(parseInt(newBtn.dataset.index));
+                        btn.classList.add('active-pulse');
+                        setTimeout(() => btn.classList.remove('active-pulse'), 300);
+                        playerSequence.push(index);
                         if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
                             handleIncorrect(null);
                             playerSequence = [];
                             statusEl.textContent = 'Попробуй снова!';
-                            setTimeout(() => playSequence(), 1000);
+                            setTimeout(() => {
+                                generateSequence();
+                                playSequence();
+                            }, 1000);
                         } else if (playerSequence.length === sequence.length) {
                             handleCorrect();
                         }
@@ -956,7 +951,7 @@
                 });
 
                 generateSequence();
-                setTimeout(() => playSequence(), 500);
+                setTimeout(playSequence, 500);
             }
 
             // === УРОВЕНЬ 11 ===
@@ -975,7 +970,7 @@
                     newItem.addEventListener('click', () => {
                         if (newItem.classList.contains('matched')) return;
                         if (newItem.dataset.type === 'animal') {
-                            document.querySelectorAll('#level-11 .pair-item[data-type="animal"]').forEach(el => 
+                            document.querySelectorAll('#level-11 .pair-item[data-type="animal"]').forEach(el =>
                                 el.classList.remove('selected'));
                             newItem.classList.add('selected');
                             selectedAnimal = newItem.dataset.id;
