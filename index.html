@@ -8,13 +8,14 @@
         /* --- ОБЩИЕ СТИЛИ ИГРЫ --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #e0f2f1; /* Светло-бирюзовый фон */
+            background-color: #e0f2f1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            color: #004d40; /* Темно-зеленый текст */
+            padding: 20px;
+            color: #004d40;
         }
 
         .game-container {
@@ -28,13 +29,15 @@
         }
 
         .level, #start-screen, #final-screen {
-            display: none; /* Все экраны по умолчанию скрыты */
+            display: none;
             flex-direction: column;
             align-items: center;
         }
 
-        #start-screen {
-            display: flex; /* Показываем стартовый экран */
+        #start-screen.active,
+        #final-screen.active,
+        .level.active {
+            display: flex;
         }
 
         h1 {
@@ -52,12 +55,8 @@
             font-size: 1.1rem;
         }
 
-        .hidden {
-            display: none !important;
-        }
-
         button {
-            background-color: #ffc107; /* Янтарный цвет */
+            background-color: #ffc107;
             border: none;
             border-radius: 10px;
             padding: 15px 30px;
@@ -66,6 +65,7 @@
             color: #444;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -74,7 +74,7 @@
         }
 
         #message-area {
-            height: 40px;
+            min-height: 40px;
             font-size: 1.2rem;
             font-weight: bold;
             margin-top: 15px;
@@ -122,13 +122,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #81c784; /* Зеленый листик */
+            background-color: #81c784;
             color: transparent;
             font-size: 3rem;
             user-select: none;
         }
-        #level-2 .clickable.flipped, #level-2 .clickable.matched {
-            background-color: #fff59d; /* Желтый */
+        #level-2 .clickable.flipped, 
+        #level-2 .clickable.matched {
+            background-color: #fff59d;
             color: #000;
         }
 
@@ -136,33 +137,45 @@
         #code-display {
             font-size: 2rem;
             letter-spacing: 10px;
-            margin: 15px 0;
+            margin: 15px auto;
             padding: 10px;
             border: 2px dashed #00796b;
             border-radius: 10px;
-            height: 40px;
-            width: 100px;
-            text-align: center;
+            min-height: 40px;
+            width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        #keypad { display: flex; gap: 10px; }
-        #keypad .clickable { font-size: 2rem; border: 1px solid #ccc; width: 50px; }
-
+        #keypad { 
+            display: flex; 
+            gap: 10px; 
+            justify-content: center;
+        }
+        #keypad .clickable { 
+            font-size: 2rem; 
+            border: 1px solid #ccc; 
+            width: 60px; 
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
 
     <div class="game-container">
         <!-- Стартовый экран -->
-        <div id="start-screen">
+        <div id="start-screen" class="active">
             <h1>Приключения Финника</h1>
             <p>Помоги бельчонку Финнику найти его Волшебный Жёлудь, решая головоломки!</p>
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAsMiBDMjIsMiAyLDIyIDIsNTBDMi4wMyw3Ny42MSA1MCw5OCA1MCw5OEM1MCw5wzMyBDODguNTUsMjMuODcgNjkuNDcsMjAgNTAsMjAgQzMxLjM1MjIsMjAgMTIuNDQ3OCwyMy4zNzQzIDIsMzMgQzIuNzMxNTgsMTYuMDY5MSA1MCwyIDUwLDIgWiIgc3R5bGU9ImZpbGw6IHJnYigyNTUsIDI1NSwgMjU1KTsgc3Ryb2tlLXdpZHRoOiAwIHB4OyIvPjwvc3ZnPg==" alt="Acorn" width="80">
-            <br>
+            <div style="font-size: 5rem; margin: 20px 0;">🐿️</div>
             <button id="start-button">Начать игру!</button>
         </div>
 
         <!-- Контейнер для уровней -->
-        <div id="game-area" class="hidden">
+        <div id="game-area">
             <div id="game-header">
                 <h1>Уровень <span id="level-number">1</span></h1>
                 <div id="message-area"></div>
@@ -218,7 +231,6 @@
                     <div class="clickable" data-digit="3">3</div>
                 </div>
             </div>
-
         </div>
 
         <!-- Финальный экран -->
@@ -226,14 +238,11 @@
             <h1>Ура! Победа!</h1>
             <p>Ты помог Финнику найти его Волшебный Жёлудь! Ты настоящий молодец и умница!</p>
             <div style="font-size: 5rem;">🏆</div>
-            <br>
             <button id="restart-button">Играть снова</button>
         </div>
     </div>
 
     <script>
-        // --- ЛОГИКА ИГРЫ (JavaScript) ---
-
         document.addEventListener('DOMContentLoaded', () => {
             // --- Переменные состояния игры ---
             let currentLevel = 1;
@@ -251,40 +260,43 @@
             // --- Основные функции игры ---
             function startGame() {
                 currentLevel = 1;
-                startScreen.style.display = 'none';
-                finalScreen.style.display = 'none';
+                startScreen.classList.remove('active');
+                finalScreen.classList.remove('active');
                 gameArea.style.display = 'block';
                 showLevel(currentLevel);
             }
 
             function showLevel(levelNum) {
                 // Скрываем все уровни
-                document.querySelectorAll('.level').forEach(lvl => lvl.style.display = 'none');
+                document.querySelectorAll('.level').forEach(lvl => {
+                    lvl.classList.remove('active');
+                });
                 
                 // Показываем нужный уровень
-                const levelToShow = document.getElementById(`level-${levelNum}`);
-                if (levelToShow) {
-                    levelToShow.style.display = 'flex';
+                if (levelNum <= totalLevels) {
+                    const levelToShow = document.getElementById(`level-${levelNum}`);
+                    levelToShow.classList.add('active');
                     levelNumberEl.textContent = levelNum;
                     messageArea.textContent = '';
+                    messageArea.className = '';
+                    
                     // Инициализация для конкретных уровней
                     if (levelNum === 2) initLevel2();
                     if (levelNum === 3) initLevel3();
                     if (levelNum === 4) initLevel4();
                     if (levelNum === 5) initLevel5();
                 } else {
-                    // Если уровни закончились, показать финальный экран
                     showFinalScreen();
                 }
             }
             
             function showFinalScreen() {
                 gameArea.style.display = 'none';
-                finalScreen.style.display = 'flex';
+                finalScreen.classList.add('active');
             }
 
             function handleCorrect() {
-                messageArea.textContent = 'Правильно!';
+                messageArea.textContent = 'Правильно! 🎉';
                 messageArea.className = 'correct';
                 setTimeout(() => {
                     currentLevel++;
@@ -293,7 +305,7 @@
             }
 
             function handleIncorrect(element) {
-                messageArea.textContent = 'Попробуй ещё раз!';
+                messageArea.textContent = 'Попробуй ещё раз! 🤔';
                 messageArea.className = 'incorrect';
                 if (element) {
                     element.classList.add('shake');
@@ -304,28 +316,36 @@
             // --- Логика для каждого уровня ---
 
             // Уровень 1: Найди лишнее
-            document.querySelectorAll('#level-1 .clickable').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (item.dataset.correct === 'true') {
-                        handleCorrect();
-                    } else {
-                        handleIncorrect(item);
-                    }
+            function initLevel1() {
+                document.querySelectorAll('#level-1 .clickable').forEach(item => {
+                    const newItem = item.cloneNode(true);
+                    item.parentNode.replaceChild(newItem, item);
+                    
+                    newItem.addEventListener('click', () => {
+                        if (newItem.dataset.correct === 'true') {
+                            handleCorrect();
+                        } else {
+                            handleIncorrect(newItem);
+                        }
+                    });
                 });
-            });
+            }
+            initLevel1();
             
             // Уровень 2: Мемори
             let flippedCards = [];
             let matchedPairs = 0;
             let lockBoard = false;
+            
             function initLevel2() {
                 const grid = document.getElementById('memory-grid');
-                grid.innerHTML = ''; // Очищаем поле перед началом
+                grid.innerHTML = '';
                 const emojis = ['🍓', '🍓', '🍌', '🍌', '🍇', '🍇'];
-                emojis.sort(() => 0.5 - Math.random()); // Перемешиваем
+                emojis.sort(() => 0.5 - Math.random());
                 
                 flippedCards = [];
                 matchedPairs = 0;
+                lockBoard = false;
                 
                 emojis.forEach(emoji => {
                     const card = document.createElement('div');
@@ -336,9 +356,11 @@
                     grid.appendChild(card);
                 });
             }
+            
             function flipCard() {
                 if (lockBoard) return;
                 if (this === flippedCards[0]) return;
+                if (this.classList.contains('matched')) return;
 
                 this.classList.add('flipped');
 
@@ -351,7 +373,6 @@
                 lockBoard = true;
 
                 if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
-                    // Совпадение
                     flippedCards[0].classList.add('matched');
                     flippedCards[1].classList.add('matched');
                     matchedPairs++;
@@ -360,7 +381,6 @@
                        setTimeout(handleCorrect, 500);
                     }
                 } else {
-                    // Не совпали
                     setTimeout(() => {
                         flippedCards[0].classList.remove('flipped');
                         flippedCards[1].classList.remove('flipped');
@@ -368,87 +388,105 @@
                     }, 1000);
                 }
             }
+            
             function resetBoard() {
-                [flippedCards, lockBoard] = [[], false];
+                flippedCards = [];
+                lockBoard = false;
             }
-
 
             // Уровень 3: Правильный порядок
             let sequence = [];
             const correctSequence = ['1', '2', '3'];
+            
             function initLevel3() {
                 sequence = [];
-            }
-            document.querySelectorAll('#level-3 .clickable').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (sequence.length < 3) {
-                        sequence.push(item.dataset.order);
-                        item.style.backgroundColor = 'rgba(255, 193, 7, 0.3)'; // подсветить нажатый
-                        if (sequence.length === 3) {
-                            if (JSON.stringify(sequence) === JSON.stringify(correctSequence)) {
-                                handleCorrect();
-                            } else {
-                                handleIncorrect(null);
-                                setTimeout(() => {
-                                    document.querySelectorAll('#level-3 .clickable').forEach(el => el.style.backgroundColor = '');
-                                    initLevel3();
-                                }, 1000);
+                const items = document.querySelectorAll('#level-3 .clickable');
+                items.forEach(item => {
+                    item.style.backgroundColor = '';
+                    const newItem = item.cloneNode(true);
+                    item.parentNode.replaceChild(newItem, item);
+                    
+                    newItem.addEventListener('click', () => {
+                        if (sequence.length < 3) {
+                            sequence.push(newItem.dataset.order);
+                            newItem.style.backgroundColor = 'rgba(255, 193, 7, 0.5)';
+                            
+                            if (sequence.length === 3) {
+                                if (JSON.stringify(sequence) === JSON.stringify(correctSequence)) {
+                                    handleCorrect();
+                                } else {
+                                    handleIncorrect(null);
+                                    setTimeout(() => {
+                                        initLevel3();
+                                    }, 1000);
+                                }
                             }
                         }
-                    }
+                    });
                 });
-            });
+            }
 
             // Уровень 4: Смешивание цветов
             let mixedColors = new Set();
+            
             function initLevel4() {
                 mixedColors.clear();
-            }
-            document.querySelectorAll('#level-4 .clickable').forEach(item => {
-                item.addEventListener('click', () => {
-                    const color = item.dataset.color;
-                    if (color === 'red') {
-                        handleIncorrect(item);
-                        return;
-                    }
-                    if (!mixedColors.has(color)) {
-                        mixedColors.add(color);
-                        item.style.backgroundColor = 'rgba(255, 193, 7, 0.3)';
-                    }
-                    if (mixedColors.has('yellow') && mixedColors.has('blue')) {
-                        handleCorrect();
-                    }
+                const items = document.querySelectorAll('#level-4 .clickable');
+                items.forEach(item => {
+                    item.style.backgroundColor = '';
+                    const newItem = item.cloneNode(true);
+                    item.parentNode.replaceChild(newItem, item);
+                    
+                    newItem.addEventListener('click', () => {
+                        const color = newItem.dataset.color;
+                        if (color === 'red') {
+                            handleIncorrect(newItem);
+                            return;
+                        }
+                        if (!mixedColors.has(color)) {
+                            mixedColors.add(color);
+                            newItem.style.backgroundColor = 'rgba(255, 193, 7, 0.5)';
+                        }
+                        if (mixedColors.has('yellow') && mixedColors.has('blue')) {
+                            handleCorrect();
+                        }
+                    });
                 });
-            });
+            }
             
             // Уровень 5: Кодовый замок
             let enteredCode = '';
             const correctCode = '123';
             const codeDisplay = document.getElementById('code-display');
+            
             function initLevel5() {
                 enteredCode = '';
                 codeDisplay.textContent = '';
-            }
-            document.querySelectorAll('#level-5 .clickable').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (enteredCode.length < 3) {
-                        enteredCode += item.dataset.digit;
-                        codeDisplay.textContent = enteredCode;
-                        
-                        if(enteredCode.length === 3) {
-                            if (enteredCode === correctCode) {
-                                handleCorrect();
-                            } else {
-                                handleIncorrect(null);
-                                setTimeout(() => {
-                                    initLevel5(); // Сброс кода
-                                }, 1000);
+                
+                const buttons = document.querySelectorAll('#level-5 .clickable');
+                buttons.forEach(item => {
+                    const newItem = item.cloneNode(true);
+                    item.parentNode.replaceChild(newItem, item);
+                    
+                    newItem.addEventListener('click', () => {
+                        if (enteredCode.length < 3) {
+                            enteredCode += newItem.dataset.digit;
+                            codeDisplay.textContent = enteredCode;
+                            
+                            if(enteredCode.length === 3) {
+                                if (enteredCode === correctCode) {
+                                    handleCorrect();
+                                } else {
+                                    handleIncorrect(null);
+                                    setTimeout(() => {
+                                        initLevel5();
+                                    }, 1000);
+                                }
                             }
                         }
-                    }
+                    });
                 });
-            });
-
+            }
 
             // --- Привязка событий к кнопкам ---
             startButton.addEventListener('click', startGame);
