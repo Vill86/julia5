@@ -62,6 +62,50 @@
             font-size: 20px;
             color: #764ba2;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .info-item {
+            background: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+        }
+
+        .errors {
+            color: #F44336;
+            font-weight: bold;
+        }
+
+        .timer {
+            background: #FF9800;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .timer.warning {
+            background: #F44336;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
 
         .task-container {
@@ -106,6 +150,11 @@
             transform: scale(0.95);
         }
 
+        .option-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .math-input, .word-input {
             width: 100%;
             padding: 15px;
@@ -132,6 +181,12 @@
         .submit-btn:hover {
             background: #45a049;
             transform: scale(1.1);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: scale(1);
         }
 
         .feedback {
@@ -262,6 +317,103 @@
             border-width: 5px;
         }
 
+        .slider-container {
+            margin: 30px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 15px;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            background: #ddd;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .sorting-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .sort-item {
+            background: white;
+            padding: 15px;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            cursor: move;
+            font-size: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .sort-item.dragging {
+            opacity: 0.5;
+        }
+
+        .sort-item:hover {
+            background: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        .shape-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .shape-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .shape-item:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+
+        .shape-item.selected {
+            border-color: #4CAF50;
+            background: #C8E6C9;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -273,72 +425,7 @@
             .option-btn { font-size: 16px; padding: 12px; }
             .memory-grid { grid-template-columns: repeat(4, 1fr); gap: 5px; }
             .memory-card { font-size: 24px; }
-        }
-
-        .pattern-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            max-width: 300px;
-            margin: 20px auto;
-        }
-
-        .pattern-cell {
-            aspect-ratio: 1;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .pattern-cell.active {
-            background: #667eea;
-        }
-
-        .sequence-display {
-            font-size: 40px;
-            text-align: center;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-        }
-
-        .number-buttons {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .num-btn {
-            padding: 20px;
-            font-size: 24px;
-            background: white;
-            border: 3px solid #667eea;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .num-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .riddle-text {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 20px;
-            line-height: 1.6;
-            margin: 20px 0;
-            text-align: center;
-            color: #333;
+            .info-item { font-size: 16px; padding: 8px 15px; }
         }
     </style>
 </head>
@@ -347,11 +434,12 @@
         <h1>🎮 Игра для Насти 🌟</h1>
         <div class="progress-bar">
             <div class="progress-fill" id="progress">
-                <span id="progress-text">Уровень 1 из 10</span>
+                <span id="progress-text">Уровень 1 из 13</span>
             </div>
         </div>
         <div class="level-info" id="level-info">
-            Баллы: <span id="score">0</span> / 100
+            <div class="info-item">Баллы: <span id="score">0</span> / 130</div>
+            <div class="info-item errors">Ошибки: <span id="errors">0</span> / 3</div>
         </div>
         <div class="task-container" id="task-container">
             <!-- Задания будут загружаться здесь -->
@@ -361,9 +449,13 @@
     <script>
         let currentLevel = 1;
         let totalScore = 0;
-        const maxLevels = 10;
+        let errorCount = 0;
+        const maxLevels = 13;
         const pointsPerLevel = 10;
-        const maxScore = maxLevels * pointsPerLevel; // = 100
+        const maxScore = maxLevels * pointsPerLevel;
+        const maxErrors = 3;
+        let timerInterval = null;
+        let currentTimer = 0;
 
         const levels = [
             // Уровень 1: Математика
@@ -391,11 +483,12 @@
                 ],
                 answer: 0
             },
-            // Уровень 4: Память
+            // Уровень 4: Память С ТАЙМЕРОМ 40 секунд
             {
                 type: 'memory',
-                question: '🧠 Найди все пары одинаковых эмодзи!',
-                emojis: ['🐶', '🐱', '🐭', '🐹', '🦊', '🐻', '🐼', '🐨']
+                question: '🧠 Найди все пары одинаковых эмодзи за 40 секунд!',
+                emojis: ['🐶', '🐱', '🐭', '🐹', '🦊', '🐻', '🐼', '🐨'],
+                timeLimit: 40
             },
             // Уровень 5: Слова
             {
@@ -427,12 +520,38 @@
                 type: 'drawing',
                 question: '🎨 Нарисуй солнышко! (Когда закончишь, нажми "Готово")'
             },
-            // Уровень 10: Викторина финал
+            // Уровень 10: Викторина
             {
                 type: 'quiz',
-                question: '🌟 Сколько дней в неделе?',
+                questionколько дней в неделе?',
                 options: ['5', '6', '7', '8'],
                 answer: 2
+            },
+            // НОВЫЙ Уровень 11: Сортировка чисел
+            {
+                type: 'sorting',
+                question: '🔢 Расставь числа по порядку (перетаскивай мышкой или пальцем)',
+                items: ['5', '1', '9', '3', '7'],
+                correctOrder: ['1', '3', '5', '7', '9']
+            },
+            // НОВЫЙ Уровень 12: Угадай форму
+            {
+                type: 'shapes',
+                question: '🔷 Найди все КВАДРАТЫ (можно выбрать несколько)',
+                shapes: [
+                    {emoji: '⬛', isSquare: true},
+                    {emoji: '🔴', isSquare: false},
+                    {emoji: '🟦', isSquare: true},
+                    {emoji: '🔺', isSquare: false},
+                    {emoji: '🟪', isSquare: true},
+                    {emoji: '🔵', isSquare: false}
+                ]
+            },
+            // НОВЫЙ Уровень 13: Слайдер
+            {
+                type: 'slider',
+                question: '🎚️ Установи число ровно на 75!',
+                targetValue: 75
             }
         ];
 
@@ -441,12 +560,13 @@
             document.getElementById('progress').style.width = progress + '%';
             document.getElementById('progress-text').textContent = `Уровень ${currentLevel} из ${maxLevels}`;
             document.getElementById('score').textContent = totalScore;
+            document.getElementById('errors').textContent = errorCount;
         }
 
         function showFeedback(isCorrect) {
             const feedback = document.createElement('div');
             feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
-            feedback.textContent = isCorrect ? '🎉 Правильно! Молодец! 🎉' : '💪 Почти! Попробуй ещё раз! 💪';
+            feedback.textContent = isCorrect ? '🎉 Правильно! Молодец! 🎉' : '💪 Ошибка! Попробуй ещё раз! 💪';
             
             const container = document.getElementById('task-container');
             container.insertBefore(feedback, container.firstChild);
@@ -456,12 +576,102 @@
             }, 2000);
         }
 
+        function checkGameOver() {
+            if (errorCount >= maxErrors) {
+                clearInterval(timerInterval);
+                showGameOverScreen();
+                return true;
+            }
+            return false;
+        }
+
+        function showGameOverScreen() {
+            const container = document.getElementById('task-container');
+            container.innerHTML = '';
+
+            const finalDiv = document.createElement('div');
+            finalDiv.className = 'final-screen';
+
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = '😢💪';
+
+            const title = document.createElement('h2');
+            title.textContent = 'Игра окончена';
+
+            const message = document.createElement('p');
+            message.innerHTML = `
+                Ты допустила 3 ошибки 😔<br><br>
+                <strong>Не расстраивайся!</strong><br>
+                У тебя всё получится! 🌈<br><br>
+                Попробуй ещё раз! 💪
+            `;
+
+            const scoreDiv = document.createElement('div');
+            scoreDiv.className = 'score';
+            scoreDiv.textContent = `Ты набрала: ${totalScore} баллов`;
+
+            const retryBtn = document.createElement('button');
+            retryBtn.className = 'submit-btn';
+            retryBtn.textContent = 'Играть заново 🔄';
+            retryBtn.onclick = () => {
+                currentLevel = 1;
+                totalScore = 0;
+                errorCount = 0;
+                loadLevel();
+            };
+
+            finalDiv.appendChild(emoji);
+            finalDiv.appendChild(title);
+            finalDiv.appendChild(message);
+            finalDiv.appendChild(scoreDiv);
+            finalDiv.appendChild(retryBtn);
+
+            container.appendChild(finalDiv);
+        }
+
+        function startTimer(seconds, onTick, onTimeout) {
+            clearInterval(timerInterval);
+            currentTimer = seconds;
+            
+            const timerDiv = document.createElement('div');
+            timerDiv.className = 'timer';
+            timerDiv.id = 'timer-display';
+            timerDiv.textContent = `⏱️ Осталось: ${currentTimer} сек`;
+            
+            const container = document.getElementById('task-container');
+            container.insertBefore(timerDiv, container.firstChild);
+
+            timerInterval = setInterval(() => {
+                currentTimer--;
+                timerDiv.textContent = `⏱️ Осталось: ${currentTimer} сек`;
+                
+                if (currentTimer <= 10) {
+                    timerDiv.classList.add('warning');
+                }
+                
+                if (onTick) onTick(currentTimer);
+                
+                if (currentTimer <= 0) {
+                    clearInterval(timerInterval);
+                    if (onTimeout) onTimeout();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            const timerDiv = document.getElementById('timer-display');
+            if (timerDiv) timerDiv.remove();
+        }
+
         function loadLevel() {
             if (currentLevel > maxLevels) {
                 showFinalScreen();
                 return;
             }
 
+            stopTimer();
             updateProgress();
             const level = levels[currentLevel - 1];
             const container = document.getElementById('task-container');
@@ -491,6 +701,15 @@
                 case 'drawing':
                     loadDrawingLevel(level, container);
                     break;
+                case 'sorting':
+                    loadSortingLevel(level, container);
+                    break;
+                case 'shapes':
+                    loadShapesLevel(level, container);
+                    break;
+                case 'slider':
+                    loadSliderLevel(level, container);
+                    break;
             }
         }
 
@@ -517,7 +736,12 @@
                         loadLevel();
                     }, 2000);
                 } else {
+                    errorCount++;
+                    updateProgress();
                     showFeedback(false);
+                    
+                    if (checkGameOver()) return;
+                    
                     input.value = '';
                     input.focus();
                 }
@@ -549,7 +773,10 @@
                             loadLevel();
                         }, 2000);
                     } else {
+                        errorCount++;
+                        updateProgress();
                         showFeedback(false);
+                        checkGameOver();
                     }
                 };
                 optionsDiv.appendChild(btn);
@@ -578,7 +805,10 @@
                             loadLevel();
                         }, 2000);
                     } else {
+                        errorCount++;
+                        updateProgress();
                         showFeedback(false);
+                        checkGameOver();
                     }
                 };
                 optionsDiv.appendChild(btn);
@@ -591,9 +821,26 @@
             const emojis = [...level.emojis, ...level.emojis].sort(() => Math.random() - 0.5);
             let flippedCards = [];
             let matchedPairs = 0;
+            let isProcessing = false;
 
             const grid = document.createElement('div');
             grid.className = 'memory-grid';
+
+            // Запускаем таймер
+            if (level.timeLimit) {
+                startTimer(level.timeLimit, null, () => {
+                    errorCount++;
+                    updateProgress();
+                    showFeedback(false);
+                    
+                    if (!checkGameOver()) {
+                        setTimeout(() => {
+                            currentLevel++;
+                            loadLevel();
+                        }, 2000);
+                    }
+                });
+            }
 
             emojis.forEach((emoji, index) => {
                 const card = document.createElement('div');
@@ -602,34 +849,40 @@
                 card.dataset.index = index;
 
                 card.onclick = () => {
-                    if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
-                        card.classList.add('flipped');
-                        card.textContent = emoji;
-                        flippedCards.push(card);
+                    if (isProcessing || flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                        return;
+                    }
 
-                        if (flippedCards.length === 2) {
-                            setTimeout(() => {
-                                if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
-                                    flippedCards.forEach(c => c.classList.add('matched'));
-                                    matchedPairs++;
-                                    
-                                    if (matchedPairs === level.emojis.length) {
-                                        totalScore += pointsPerLevel;
-                                        showFeedback(true);
-                                        setTimeout(() => {
-                                            currentLevel++;
-                                            loadLevel();
-                                        }, 2000);
-                                    }
-                                } else {
-                                    flippedCards.forEach(c => {
-                                        c.classList.remove('flipped');
-                                        c.textContent = '';
-                                    });
+                    card.classList.add('flipped');
+                    card.textContent = emoji;
+                    flippedCards.push(card);
+
+                    if (flippedCards.length === 2) {
+                        isProcessing = true;
+                        
+                        setTimeout(() => {
+                            if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
+                                flippedCards.forEach(c => c.classList.add('matched'));
+                                matchedPairs++;
+                                
+                                if (matchedPairs === level.emojis.length) {
+                                    stopTimer();
+                                    totalScore += pointsPerLevel;
+                                    showFeedback(true);
+                                    setTimeout(() => {
+                                        currentLevel++;
+                                        loadLevel();
+                                    }, 2000);
                                 }
-                                flippedCards = [];
-                            }, 800);
-                        }
+                            } else {
+                                flippedCards.forEach(c => {
+                                    c.classList.remove('flipped');
+                                    c.textContent = '';
+                                });
+                            }
+                            flippedCards = [];
+                            isProcessing = false;
+                        }, 800);
                     }
                 };
 
@@ -645,7 +898,6 @@
             canvas.width = 400;
             canvas.height = 400;
             
-            // Адаптивный размер
             if (window.innerWidth < 480) {
                 canvas.width = window.innerWidth - 80;
                 canvas.height = window.innerWidth - 80;
@@ -697,7 +949,7 @@
             colors.forEach(color => {
                 const colorBtn = document.createElement('div');
                 colorBtn.className = 'color-choice';
-                colorBtn.style.background = color;
+                                colorBtn.style.background = color;
                 if (color === '#FFD700') colorBtn.classList.add('active');
                 colorBtn.onclick = () => {
                     document.querySelectorAll('.color-choice').forEach(c => c.classList.remove('active'));
@@ -724,6 +976,232 @@
             container.appendChild(button);
         }
 
+        // НОВАЯ ФУНКЦИЯ: Сортировка
+        function loadSortingLevel(level, container) {
+            const sortingDiv = document.createElement('div');
+            sortingDiv.className = 'sorting-container';
+            
+            let draggedElement = null;
+
+            level.items.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'sort-item';
+                itemDiv.textContent = item;
+                itemDiv.draggable = true;
+                itemDiv.dataset.value = item;
+
+                itemDiv.addEventListener('dragstart', (e) => {
+                    draggedElement = itemDiv;
+                    setTimeout(() => itemDiv.classList.add('dragging'), 0);
+                });
+
+                itemDiv.addEventListener('dragend', () => {
+                    itemDiv.classList.remove('dragging');
+                });
+
+                itemDiv.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+
+                itemDiv.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    if (draggedElement !== itemDiv) {
+                        const allItems = [...sortingDiv.children];
+                        const draggedIndex = allItems.indexOf(draggedElement);
+                        const targetIndex = allItems.indexOf(itemDiv);
+
+                        if (draggedIndex < targetIndex) {
+                            sortingDiv.insertBefore(draggedElement, itemDiv.nextSibling);
+                        } else {
+                            sortingDiv.insertBefore(draggedElement, itemDiv);
+                        }
+                    }
+                });
+
+                // Touch support
+                itemDiv.addEventListener('touchstart', (e) => {
+                    draggedElement = itemDiv;
+                    itemDiv.classList.add('dragging');
+                });
+
+                itemDiv.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    const targetElement = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (targetElement && targetElement.classList.contains('sort-item') && targetElement !== draggedElement) {
+                        const allItems = [...sortingDiv.children];
+                        const draggedIndex = allItems.indexOf(draggedElement);
+                        const targetIndex = allItems.indexOf(targetElement);
+
+                        if (draggedIndex < targetIndex) {
+                            sortingDiv.insertBefore(draggedElement, targetElement.nextSibling);
+                        } else {
+                            sortingDiv.insertBefore(draggedElement, targetElement);
+                        }
+                    }
+                });
+
+                itemDiv.addEventListener('touchend', () => {
+                    itemDiv.classList.remove('dragging');
+                });
+
+                sortingDiv.appendChild(itemDiv);
+            });
+
+            const button = document.createElement('button');
+            button.className = 'submit-btn';
+            button.textContent = 'Проверить порядок ✓';
+            button.onclick = () => {
+                const currentOrder = [...sortingDiv.children].map(item => item.dataset.value);
+                const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(level.correctOrder);
+
+                if (isCorrect) {
+                    totalScore += pointsPerLevel;
+                    showFeedback(true);
+                    setTimeout(() => {
+                        currentLevel++;
+                        loadLevel();
+                    }, 2000);
+                } else {
+                    errorCount++;
+                    updateProgress();
+                    showFeedback(false);
+                    checkGameOver();
+                }
+            };
+
+            container.appendChild(sortingDiv);
+            container.appendChild(button);
+        }
+
+        // НОВАЯ ФУНКЦИЯ: Формы
+        function loadShapesLevel(level, container) {
+            const shapeGrid = document.createElement('div');
+            shapeGrid.className = 'shape-grid';
+            
+            const selectedShapes = new Set();
+
+            level.shapes.forEach((shape, index) => {
+                const shapeDiv = document.createElement('div');
+                shapeDiv.className = 'shape-item';
+                shapeDiv.textContent = shape.emoji;
+                shapeDiv.dataset.index = index;
+                shapeDiv.dataset.isSquare = shape.isSquare;
+
+                shapeDiv.onclick = () => {
+                    if (selectedShapes.has(index)) {
+                        selectedShapes.delete(index);
+                        shapeDiv.classList.remove('selected');
+                    } else {
+                        selectedShapes.add(index);
+                        shapeDiv.classList.add('selected');
+                    }
+                };
+
+                shapeGrid.appendChild(shapeDiv);
+            });
+
+            const button = document.createElement('button');
+            button.className = 'submit-btn';
+            button.textContent = 'Проверить выбор ✓';
+            button.onclick = () => {
+                // Проверяем, что выбраны все квадраты и только квадраты
+                const correctSquares = level.shapes
+                    .map((s, i) => s.isSquare ? i : -1)
+                    .filter(i => i !== -1);
+                
+                const isCorrect = correctSquares.length === selectedShapes.size &&
+                    correctSquares.every(i => selectedShapes.has(i));
+
+                if (isCorrect) {
+                    totalScore += pointsPerLevel;
+                    showFeedback(true);
+                    setTimeout(() => {
+                        currentLevel++;
+                        loadLevel();
+                    }, 2000);
+                } else {
+                    errorCount++;
+                    updateProgress();
+                    showFeedback(false);
+                    
+                    if (!checkGameOver()) {
+                        // Очищаем выбор
+                        selectedShapes.clear();
+                        document.querySelectorAll('.shape-item').forEach(item => {
+                            item.classList.remove('selected');
+                        });
+                    }
+                }
+            };
+
+            container.appendChild(shapeGrid);
+            container.appendChild(button);
+        }
+
+        // НОВАЯ ФУНКЦИЯ: Слайдер
+        function loadSliderLevel(level, container) {
+            const sliderContainer = document.createElement('div');
+            sliderContainer.className = 'slider-container';
+
+            const valueDisplay = document.createElement('div');
+            valueDisplay.className = 'slider-value';
+            valueDisplay.textContent = '50';
+
+            const slider = document.createElement('input');
+            slider.type = 'range';
+            slider.className = 'slider';
+            slider.min = '0';
+            slider.max = '100';
+            slider.value = '50';
+
+            slider.oninput = () => {
+                valueDisplay.textContent = slider.value;
+            };
+
+            const button = document.createElement('button');
+            button.className = 'submit-btn';
+            button.textContent = 'Проверить ✓';
+            button.onclick = () => {
+                const userValue = parseInt(slider.value);
+                
+                if (userValue === level.targetValue) {
+                    totalScore += pointsPerLevel;
+                    showFeedback(true);
+                    setTimeout(() => {
+                        currentLevel++;
+                        loadLevel();
+                    }, 2000);
+                } else {
+                    errorCount++;
+                    updateProgress();
+                    
+                    const diff = Math.abs(userValue - level.targetValue);
+                    const feedback = document.createElement('div');
+                    feedback.className = 'feedback incorrect';
+                    
+                    if (diff <= 5) {
+                        feedback.textContent = '🔥 Очень близко! Попробуй ещё чуть-чуть!';
+                    } else if (diff <= 10) {
+                        feedback.textContent = '👍 Почти! Ещё немного!';
+                    } else {
+                        feedback.textContent = userValue < level.targetValue ? 
+                            '⬆️ Нужно больше!' : '⬇️ Нужно меньше!';
+                    }
+                    
+                    container.insertBefore(feedback, container.firstChild);
+                    setTimeout(() => feedback.remove(), 2000);
+                    
+                    checkGameOver();
+                }
+            };
+
+            sliderContainer.appendChild(valueDisplay);
+            sliderContainer.appendChild(slider);
+            container.appendChild(sliderContainer);
+            container.appendChild(button);
+        }
+
         function showFinalScreen() {
             const container = document.getElementById('task-container');
             container.innerHTML = '';
@@ -733,12 +1211,15 @@
 
             const scoreDiv = document.createElement('div');
             scoreDiv.className = 'score';
-            // ИСПРАВЛЕНО: Теперь показывает реальный счет
-            scoreDiv.textContent = `Твой результат: ${totalScore} из ${maxScore} баллов!`;
+            scoreDiv.innerHTML = `
+                Твой результат: ${totalScore} из ${maxScore} баллов!<br>
+                Ошибок: ${errorCount} из ${maxErrors}
+            `;
 
             finalDiv.appendChild(scoreDiv);
 
-            if (totalScore >= 70) {
+            // Порог для победы: минимум 90 баллов (9 из 13 уровней) и не более 3 ошибок
+            if (totalScore >= 90 && errorCount < maxErrors) {
                 const emoji = document.createElement('div');
                 emoji.className = 'emoji';
                 emoji.textContent = '🎉🏆🎊';
@@ -748,9 +1229,9 @@
 
                 const message = document.createElement('p');
                 message.innerHTML = `
-                    <strong>Молодец, Настенька!</strong><br><br>
+                    <strong>Молодец, Верочка!</strong><br><br>
                     Ты прошла все испытания! 🌟<br><br>
-                    Можешь идти к брату и получить приз - <strong>КОНФЕТКИ!</strong> 🍬🍭🍫
+                    Можешь идти к Дяде Феде и получить приз - <strong>КОНФЕТКУ!</strong> 🍬🍭🍫
                 `;
 
                 finalDiv.appendChild(emoji);
@@ -767,7 +1248,8 @@
                 const message = document.createElement('p');
                 message.innerHTML = `
                     У тебя всё получится! 🌈<br><br>
-                    Попробуй ещё раз, ты справишься! 💪
+                    Попробуй ещё раз, ты справишься! 💪<br><br>
+                    ${totalScore < 90 ? 'Нужно набрать минимум 90 баллов! 🎯' : ''}
                 `;
 
                 const retryBtn = document.createElement('button');
@@ -776,6 +1258,7 @@
                 retryBtn.onclick = () => {
                     currentLevel = 1;
                     totalScore = 0;
+                    errorCount = 0;
                     loadLevel();
                 };
 
