@@ -363,6 +363,7 @@
         let totalScore = 0;
         const maxLevels = 10;
         const pointsPerLevel = 10;
+        const maxScore = maxLevels * pointsPerLevel; // = 100
 
         const levels = [
             // Уровень 1: Математика
@@ -732,7 +733,8 @@
 
             const scoreDiv = document.createElement('div');
             scoreDiv.className = 'score';
-            scoreDiv.textContent = `Твой результат: ${totalScore} из 100 баллов!`;
+            // ИСПРАВЛЕНО: Теперь показывает реальный счет
+            scoreDiv.textContent = `Твой результат: ${totalScore} из ${maxScore} баллов!`;
 
             finalDiv.appendChild(scoreDiv);
 
